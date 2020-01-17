@@ -60,7 +60,8 @@
     }
     render() {
       const style = {
-        backgroundColor: 'white',
+								backgroundColor: 'green',
+								color:'white',
         font: 'inherit',
         border: '1px solid blue',
         padding: '8px',
@@ -80,6 +81,7 @@
 									})}
 								</div>
 								);
+								style.backgroundColor = 'red';
 						}
 						let validationComponent= null;
 					
@@ -99,10 +101,18 @@
           name = {this.state.persons[2].name} 
           age = {this.state.persons[2].age}></Person>
 										</div>); */
-      
-      return (
+						let classes = [];
+						if (this.state.persons.length <=2 ){
+								classes.push('red');
+						}
+						if(this.state.persons.length <=1){
+							classes.push('bold');
+						}
+						
+						return (
         <div className="App">
         <h1>Hi I am React App</h1>
+								<p className={classes.join(' ')}>This is really Working!!</p>
         <button 
         style={style}
         onClick={this.togglePersonsHandler}>Toggle Views</button>
