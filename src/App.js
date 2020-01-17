@@ -6,7 +6,7 @@
   import UserInput from "./User/UserInput";
 		import Validation from "./User/Validation";
 
-		import Radium, {StyleRoot} from 'radium';
+		
   class App extends Component {
     state = {
       persons: [
@@ -120,7 +120,7 @@
 						}
 						
 						return (
-						<StyleRoot>
+						
         <div className="App">
         <h1>Hi I am React App</h1>
 								<p className={classes.join(' ')}>This is really Working!!</p>
@@ -140,11 +140,11 @@
         />
 								<Validation length = {this.state.lengthOfCharacters}/>
         </div>
-								</StyleRoot>
+								
         );
         //return React.createElement('div', null,React.createElement('h1',{ className: 'App'},'Does it work now')); 
       }
     }
     
-    export default Radium(App);
+    export default App;
     
