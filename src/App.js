@@ -4,7 +4,9 @@
   import Person from './Person/Person.js';
   import UserOutput from "./User/UserOutput.js";
   import UserInput from "./User/UserInput";
-  import Validation from "./User/Validation";
+		import Validation from "./User/Validation";
+
+		import Radium, {StyleRoot} from 'radium';
   class App extends Component {
     state = {
       persons: [
@@ -65,7 +67,11 @@
         font: 'inherit',
         border: '1px solid blue',
         padding: '8px',
-        cursor: 'pointer'
+								cursor: 'pointer',
+								':hover': {
+									backgroundColor: 'lightgreen',
+									color:'blue'
+								}
       };
       let persons = null;
       if (this.state.showPersons){
@@ -82,6 +88,10 @@
 								</div>
 								);
 								style.backgroundColor = 'red';
+								style[':hover']=  {
+									backgroundColor: 'lightblue',
+									color:'blue'
+								}
 						}
 						let validationComponent= null;
 					
@@ -110,6 +120,7 @@
 						}
 						
 						return (
+						<StyleRoot>
         <div className="App">
         <h1>Hi I am React App</h1>
 								<p className={classes.join(' ')}>This is really Working!!</p>
@@ -129,10 +140,11 @@
         />
 								<Validation length = {this.state.lengthOfCharacters}/>
         </div>
+								</StyleRoot>
         );
         //return React.createElement('div', null,React.createElement('h1',{ className: 'App'},'Does it work now')); 
       }
     }
     
-    export default App;
+    export default Radium(App);
     
