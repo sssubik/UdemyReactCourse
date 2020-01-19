@@ -15,9 +15,9 @@
         {id:'asdasdasdasd',name: "Steph", age:26}
       ],
       otherState: 'some value here',
-      username:"Subik",
+      
 						showPersons:true,
-						lengthOfCharacters: 0
+						
     }
  /*    switchNameHandler = (newName) =>{
       
@@ -41,9 +41,7 @@
       this.setState({ persons: persons});
        
 				}
-				lengthChangeHandler = (event) => {
-						this.setState({lengthOfCharacters: event.target.value.length});
-				}
+				
 				deletePersonHandler = (personIndex) =>{
 					const persons = [...this.state.persons];
 						persons.splice(personIndex,1);
@@ -130,15 +128,7 @@
         
         {persons}
            
-        <UserOutput 
-        lengthOfCharacters = {this.state.lengthOfCharacters}
-        name = {this.state.username}
-        />
-        <UserInput
         
-        changed={(event) => this.lengthChangeHandler(event)}
-        />
-								<Validation length = {this.state.lengthOfCharacters}/>
         </div>
 								
         );
