@@ -1,13 +1,14 @@
   import React, { Component } from 'react';
-  import logo from './logo.svg';
+  
   import './App.css';
-  import Person from './Person/Person.js';
-  import UserOutput from "./User/UserOutput.js";
-  import UserInput from "./User/UserInput";
-		import Validation from "./User/Validation";
-
-		
+  import Persons from '../components/Persons/Persons';
+  import Cockpit from '../components/Cockpit/Cockpit'
   class App extends Component {
+    constructor(props){
+      super(props);
+      console.log('[App.js] constructor');
+    }
+
     state = {
       persons: [
         {id:'asd',name: "Max", age: 28},
@@ -29,6 +30,14 @@
         {name: "Steph", age:100}
       ]})
     } */
+
+    static getDerivedStateFromProps(props, state){
+      console.log('[App.js] get Derived State',props)
+      return state;
+    }
+    componentDidMount() {
+      console.log("App.js ComponentDidMount")
+    }
     nameChangedHandler = (event, id) =>{
 					const personIndex = this.state.persons.findIndex(p => {
 						return p.id ===id;
@@ -59,6 +68,7 @@
       });
     }
     render() {
+      console.log('App.js render');
       const style = {
 								backgroundColor: 'green',
 								color:'white',
@@ -75,57 +85,27 @@
       if (this.state.showPersons){
         persons = (
 									<div>
-									{this.state.persons.map((person, index) => {
-											return <Person 
-											click={() => this.deletePersonHandler(index)}
-											name = {person.name}
-											 age = {person.age}
-												key = {person.id}
-												changed = {(event) => this.nameChangedHandler(event,person.id)}/>
-									})}
+                    <Persons persons = {this.state.persons}
+                            clicked = {this.deletePersonHandler}
+                            changed = {this.nameChangedHandler}
+                    />
+								
 								</div>
 								);
-								style.backgroundColor = 'red';
-								style[':hover']=  {
-									backgroundColor: 'lightblue',
-									color:'blue'
-								}
+							
 						}
 						let validationComponent= null;
 					
-										/* 
-											<div><Person 
-          name = {this.state.persons[0].name} 
-          age = {this.state.persons[0].age}
-          click = {this.switchNameHandler.bind(this, 'Max!!')}/>
-          
-          <Person 
-          name = {this.state.persons[1].name} 
-          age = {this.state.persons[1].age}
-          changed={this.nameChangedHandler}>
-          My Hobbies: Soccer
-          </Person>
-          <Person 
-          name = {this.state.persons[2].name} 
-          age = {this.state.persons[2].age}></Person>
-										</div>); */
-						let classes = [];
-						if (this.state.persons.length <=2 ){
-								classes.push('red');
-						}
-						if(this.state.persons.length <=1){
-							classes.push('bold');
-						}
 						
-						return (
 						
-        <div className="App">
-        <h1>Hi I am React App</h1>
-								<p className={classes.join(' ')}>This is really Working!!</p>
-        <button 
-        style={style}
-        onClick={this.togglePersonsHandler}>Toggle Views</button>
-        
+				return (
+				<div className="App">
+        <Cockpit 
+        title = {this.props.appTitle}
+        showPersons = {this.state.showPersons}
+          persons = {this.state.persons}
+          clicked = {this.togglePersonsHandler}
+       />
         {persons}
            
         
